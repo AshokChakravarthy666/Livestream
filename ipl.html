@@ -24,6 +24,42 @@
         .plyrcontrols .plyrcontrol[data-plyr="quality"] select {
             margin-right: 10px; /* Adjust margin for better spacing */
         }
+
+        /* Add the provided CSS for the video-select dropdown */
+        #video-select {
+            font-size: 16px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            color: #333;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+        }
+
+        #video-select:hover {
+            border-color: #666;
+        }
+
+        #video-select:focus {
+            border-color: #4CAF50;
+        }
+
+        #video-select option {
+            font-size: 16px;
+            padding: 10px;
+            background-color: #fff;
+            color: #333;
+            border: none;
+        }
+
+        #video-select option:hover {
+            background-color: #f0f0f0;
+        }
     </style>
 </head>
 <body>
