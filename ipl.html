@@ -1,53 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indian Premier League 2024: RCB vs CSK</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Live Streaming Of RCB Unbox 2024</title>
 
-    <!-- Plyr library CSS -->
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.4/plyr.css">
+    <!-- Include Plyr library -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.4/plyr.css" />
 
-    <!-- Custom styles -->
+    <!-- Additional styles for custom buttons and heading -->
     <style>
         h1 {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            color: #333;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
+            text-align: center; /* Center align the heading */
+            font-family: Arial, sans-serif; /* Choose a suitable font family */
+            color: #333; /* Choose a suitable color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle text shadow for depth */
         }
 
         .plyrcontrols .plyrcontrol[data-plyr="quality"] {
-            order: 5;
+            order: 5; /* Adjust order of the button */
         }
 
         .plyrcontrols .plyrcontrol[data-plyr="quality"] select {
-            margin-right: 10px;
+            margin-right: 10px; /* Adjust margin for better spacing */
         }
     </style>
 </head>
 <body>
-    <h1>Indian Premier League 2024: RCB vs CSK</h1>
+    <h1>Live Streaming Of RCB Unbox 2024</h1> <!-- Modified heading -->
 
     <!-- Video player element -->
-    <video id="videoPlayer" width="100%" height="100%"></video>
+    <div id="player-container">
+        <video id="videoPlayer" width="100%" height="100%"></video>
+    </div>
 
-    <!-- Plyr and Hls.js libraries -->
+    <!-- Language selection -->
+    <select id="video-select">
+        <option value="hin">Hindi</option>
+        <option value="eng">English</option>
+        <option value="haryanvi">Haryanvi</option>
+        <option value="gujarati">Gujarati</option>
+        <option value="kannada">Kannada</option>
+        <option value="marathi">Marathi</option>
+        <option value="malayalam">Malayalam</option>
+        <option value="punjabi">Punjabi</option>
+        <option value="bhojpuri">Bhojpuri</option>
+        <option value="bengali">Bengali</option>
+        <option value="tamil">Tamil</option>
+        <option value="telugu">Telugu</option>
+    </select>
+
+    <!-- Include Plyr library -->
     <script src="https://cdn.plyr.io/3.6.4/plyr.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const m3u8Link = 'https://prod-sports-south.jiocinema.com/hls/live/2109724/hd_akamai_iosmob_avc_kan_ipl_s1_m1220324/master_1080p.m3u8';
+            const videoSources = {
+                "hin": "https://prod-ent-live-gm.jiocinema.com/hls/live/2100323/hd_akamai_androidmob_avc_hin_ipl_s1_m1220324/master.m3u8",
+                "eng": "https://prod-ent-live-gm.jiocinema.com/hls/live/2100299/hd_akamai_androidmob_avc_eng_ipl_s1_m1220324/master.m3u8",
+                "haryanvi": "https://prod-sports-south-cf.jiocinema.com/hls/live/2109700/hd_akamai_androidmob_avc_odia_ipl_s1_m1220324/master.m3u8",
+                "gujarati": "https://prod-sports-north-cf.jiocinema.com/hls/live/2109750/hd_akamai_androidmob_avc_guj_ipl_s1_m1220324/master.m3u8",
+                "kannada": "https://prod-sports-south-fa.jiocinema.com/hls/live/2109724/hd_akamai_androidmob_avc_kan_ipl_s1_m1220324/master.m3u8",
+                "marathi": "https://prod-sports-north-cf.jiocinema.com/hls/live/2109768/hd_akamai_androidmob_avc_mar_ipl_s1_m1220324/master.m3u8",
+                "malayalam": "https://prod-sports-south-cf.jiocinema.com/hls/live/2109706/hd_akamai_androidmob_avc_mal_ipl_s1_m1220324/master.m3u8",
+                "punjabi": "https://prod-sports-north-fa.jiocinema.com/hls/live/2109756/hd_akamai_androidmob_avc_pun_ipl_s1_m1220324/master.m3u8",
+                "bhojpuri": "https://prod-sports-north-gm.jiocinema.com/hls/live/2109762/hd_akamai_androidmob_avc_bhoj_ipl_s1_m1220324/master.m3u8",
+                "bengali": "https://prod-sports-north-gm.jiocinema.com/hls/live/2109774/hd_akamai_androidmob_avc_ben_ipl_s1_m1220324/master.m3u8",
+                "tamil": "https://prod-sports-south-gm.jiocinema.com/hls/live/2109712/hd_akamai_androidmob_avc_tam_ipl_s1_m1220324/master.m3u8",
+                "telugu": "https://prod-sports-south-cf.jiocinema.com/hls/live/2109718/hd_akamai_androidmob_avc_tel_ipl_s1_m1220324/master.m3u8"
+            };
 
             const player = new Plyr('#videoPlayer', {
                 captions: { active: true, update: true, language: 'en' },
                 controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen'],
                 settings: ['quality'],
                 quality: {
-                    default: 0,
+                    default: 0, // Default quality index (starting from 0)
                     options: [
                         'Auto',
                         { id: 1, label: '720p', selected: false },
@@ -57,47 +84,22 @@
                 }
             });
 
-            if (Hls.isSupported()) {
-                const hls = new Hls();
-                hls.loadSource(m3u8Link);
-                hls.attachMedia(player.media);
-            } else if (player.media.canPlayType('application/vnd.apple.mpegurl')) {
-                player.media.src = m3u8Link;
-            }
-        });
+            const videoSelect = document.getElementById("video-select");
 
-        var videoSources = {
-            "hin": "https://prod-ent-live-gm.jiocinema.com/hls/live/2100323/hd_akamai_androidmob_avc_hin_ipl_s1_m1220324/master.m3u8",
-            "eng": "https://prod-ent-live-gm.jiocinema.com/hls/live/2100299/hd_akamai_androidmob_avc_eng_ipl_s1_m1220324/master.m3u8",
-            "haryanvi": "https://prod-sports-south-cf.jiocinema.com/hls/live/2109700/hd_akamai_androidmob_avc_odia_ipl_s1_m1220324/master.m3u8",
-            "gujarati": "https://prod-sports-north-cf.jiocinema.com/hls/live/2109750/hd_akamai_androidmob_avc_guj_ipl_s1_m1220324/master.m3u8",
-            "kannada": "https://prod-sports-south-fa.jiocinema.com/hls/live/2109724/hd_akamai_androidmob_avc_kan_ipl_s1_m1220324/master.m3u8",
-            "marathi": "https://prod-sports-north-cf.jiocinema.com/hls/live/2109768/hd_akamai_androidmob_avc_mar_ipl_s1_m1220324/master.m3u8",
-            "malayalam": "https://prod-sports-south-cf.jiocinema.com/hls/live/2109706/hd_akamai_androidmob_avc_mal_ipl_s1_m1220324/master.m3u8",
-            "punjabi": "https://prod-sports-north-fa.jiocinema.com/hls/live/2109756/hd_akamai_androidmob_avc_pun_ipl_s1_m1220324/master.m3u8",
-            "bhojpuri": "https://prod-sports-north-gm.jiocinema.com/hls/live/2109762/hd_akamai_androidmob_avc_bhoj_ipl_s1_m1220324/master.m3u8",
-            "bengali": "https://prod-sports-north-gm.jiocinema.com/hls/live/2109774/hd_akamai_androidmob_avc_ben_ipl_s1_m1220324/master.m3u8",
-            "tamil": "https://prod-sports-south-gm.jiocinema.com/hls/live/2109712/hd_akamai_androidmob_avc_tam_ipl_s1_m1220324/master.m3u8",
-            "telugu": "https://prod-sports-south-cf.jiocinema.com/hls/live/2109718/hd_akamai_androidmob_avc_tel_ipl_s1_m1220324/master.m3u8"
-        };
+            videoSelect.addEventListener("change", function() {
+                const selectedValue = this.value;
+                const videoSource = videoSources[selectedValue];
 
-        var playerInstance = jwplayer("video");
-
-        document.getElementById("video-select").addEventListener("change", function () {
-            var selectedValue = this.value;
-            var videoSource = videoSources[selectedValue];
-
-            playerInstance.load([{ file: videoSource }]);
-            playerInstance.play();
-        });
-
-        var selectedValue = document.getElementById("video-select").value;
-        var videoSource = videoSources[selectedValue];
-
-        playerInstance.setup({
-            autostart: true,
-            mute: false,
-            playlist: [{ file: videoSource }]
+                player.source = {
+                    type: 'video',
+                    sources: [
+                        {
+                            src: videoSource,
+                            type: 'application/x-mpegURL'
+                        }
+                    ]
+                };
+            });
         });
     </script>
 </body>
